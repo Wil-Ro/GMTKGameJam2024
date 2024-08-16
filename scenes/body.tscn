@@ -3,6 +3,8 @@
 [ext_resource type="Script" path="res://body.gd" id="1_21au4"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_jcpb6"]
+radius = 5.0
+height = 10.0
 
 [node name="Body" type="Node3D"]
 script = ExtResource("1_21au4")
@@ -11,4 +13,4 @@ script = ExtResource("1_21au4")
 mesh = SubResource("SphereMesh_jcpb6")
 
 [node name="Marker3D" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.49921, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.03716, 0)
