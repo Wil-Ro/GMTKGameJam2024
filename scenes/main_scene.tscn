@@ -1,4 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://n05pnykd3tff"]
+[gd_scene load_steps=7 format=3 uid="uid://n05pnykd3tff"]
+
+[ext_resource type="PackedScene" uid="uid://dgm3241ceqpim" path="res://scenes/body.tscn" id="1_eeca8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fouvd"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -55,3 +57,5 @@ skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World/StaticBody3D"]
 shape = SubResource("BoxShape3D_0lkv2")
+
+[node name="Body" parent="World" instance=ExtResource("1_eeca8")]
