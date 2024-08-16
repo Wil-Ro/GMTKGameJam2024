@@ -9,8 +9,8 @@ signal arm_disabled(arm)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	for arm in arms:
-		arm_enabled.connect(arm.arm_enabled)
-		arm_disabled.connect(arm.arm_disabled)
+		arm_enabled.connect(arm._arm_enabled)
+		arm_disabled.connect(arm._arm_disabled)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
