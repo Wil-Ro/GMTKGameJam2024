@@ -1,6 +1,6 @@
-extends Node3D
+class_name Body extends Node3D
 
-@export var arms: Array[Node]
+@export var arms: Array[Arm]
 
 signal arm_enabled(arm)
 signal arm_disabled(arm)

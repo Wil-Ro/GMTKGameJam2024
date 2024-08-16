@@ -1,4 +1,4 @@
-extends Node3D
+class_name Arm extends Node3D
 
 @export var action: StringName
 
