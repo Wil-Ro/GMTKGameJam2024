@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://nusoljma3t55"]
+[gd_scene load_steps=3 format=3 uid="uid://nusoljma3t55"]
 
 [ext_resource type="PackedScene" uid="uid://d1o8g8quh77ll" path="res://assets/pickaxe_arm.glb" id="1_74cmy"]
+[ext_resource type="Script" path="res://scripts/arm.gd" id="2_q356t"]
 
 [node name="PickaxeArm" instance=ExtResource("1_74cmy")]
+script = ExtResource("2_q356t")
 
 [node name="Sphere_004" parent="Skeleton3D" index="0"]
 transform = Transform3D(0.919691, 0, 0, 0, 0.919691, 0, 0, 0, 0.919691, -0.000102931, 10, 6.41946e-09)
