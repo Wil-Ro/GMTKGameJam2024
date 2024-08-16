@@ -19,7 +19,7 @@ glow_enabled = true
 size = Vector3(50, 1, 50)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0lkv2"]
-size = Vector3(50, 1, 50)
+size = Vector3(50, 1.03235, 50)
 
 [node name="Main" type="Node3D"]
 
@@ -56,6 +56,8 @@ mesh = SubResource("BoxMesh_e2kr4")
 skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0161743, 0)
 shape = SubResource("BoxShape3D_0lkv2")
 
 [node name="Body" parent="World" instance=ExtResource("1_eeca8")]
+transform = Transform3D(-0.405636, -0.914035, 0, 0.914035, -0.405636, 0, 0, 0, 1, 0, 11.4413, 0)
