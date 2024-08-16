@@ -8,11 +8,11 @@ LITTLE ROBOT I LOVE HER, THE CLOCKWORK ANGEL OF THE SNOW BEGOTTEN IT CLAMBERS AN
 Jobs:
 - Modelling
   - [ ] Bodies
-  - [ ] Arms
+  - [x] Arms
     - [x] Pickaxe
     - [x] Grabby
-    - [ ] Heater
-    - [ ] Harpoon?
+    - [x] Heater
+    - [x] Harpoon?
   - [ ] Cliff
   - [ ] Rocks
   - [ ] Obstacles
