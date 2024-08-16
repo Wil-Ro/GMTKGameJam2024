@@ -9,15 +9,15 @@ Jobs:
 - Modelling
   - [ ] Bodies
   - [ ] Arms
-    - [ ] Pickaxe
-    - [ ] Grabby
+    - [x] Pickaxe
+    - [x] Grabby
     - [ ] Heater
     - [ ] Harpoon?
   - [ ] Cliff
   - [ ] Rocks
   - [ ] Obstacles
 - Coding
-  - [ ] Player Body aka camera and control over which arm is active
+  - [x] Player Body aka camera and control over which arm is active
   - [ ] Player Arms each with different mechanic
   - [ ] Mountain/Play area
   - [ ] Bodies
