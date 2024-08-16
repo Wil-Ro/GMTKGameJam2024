@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/arm.gd" id="2_q356t"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_n1pfp"]
-size = Vector3(0.644104, 0.808441, 3.22046)
+size = Vector3(0.644104, 0.871033, 3.22046)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wl42l"]
 
@@ -142,6 +142,7 @@ action = &"ActivateArm1"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.1212, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013031, -0.0264587, 0.0211182)
 shape = SubResource("BoxShape3D_n1pfp")
 
 [node name="Skeleton3D" type="Skeleton3D" parent="."]
