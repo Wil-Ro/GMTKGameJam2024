@@ -9,6 +9,10 @@ Jobs:
 - Modelling
   - [ ] Bodies
   - [ ] Arms
+    - [ ] Pickaxe
+    - [ ] Grabby
+    - [ ] Heater
+    - [ ] Harpoon?
   - [ ] Cliff
   - [ ] Rocks
   - [ ] Obstacles
