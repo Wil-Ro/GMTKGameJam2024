@@ -7,8 +7,9 @@
 radius = 5.0
 height = 10.0
 
-[node name="Body" type="Node3D"]
+[node name="Body" type="Node3D" node_paths=PackedStringArray("arms")]
 script = ExtResource("1_21au4")
+arms = [NodePath("ArmPivot/PickaxeArm")]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_jcpb6")
