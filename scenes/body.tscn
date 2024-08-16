@@ -1,11 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dgm3241ceqpim"]
+[gd_scene load_steps=3 format=3 uid="uid://dgm3241ceqpim"]
 
-[ext_resource type="Script" path="res://scripts/body.gd" id="1_21au4"]
-[ext_resource type="PackedScene" uid="uid://cgqpfh5j5v3yd" path="res://scenes/icepick_arm.tscn" id="2_eoxv3"]
+[ext_resource type="Script" path="res://body.gd" id="1_21au4"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_jcpb6"]
-radius = 5.0
-height = 10.0
 
 [node name="Body" type="Node3D"]
 script = ExtResource("1_21au4")
@@ -13,7 +10,5 @@ script = ExtResource("1_21au4")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_jcpb6")
 
-[node name="ArmPivot" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.89921, 0)
-
-[node name="icepick_arm" parent="ArmPivot" instance=ExtResource("2_eoxv3")]
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.49921, 0)
