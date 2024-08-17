@@ -21,6 +21,6 @@ Jobs:
   - [ ] Player Arms each with different mechanic
   - [ ] Mountain/Play area
   - [ ] Bodies
-  - [ ] Main Menu
+  - [x] Main Menu
   - [ ] Pause Menu
   - [ ] Any other obstacles
