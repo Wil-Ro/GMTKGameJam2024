@@ -2,19 +2,19 @@ class_name Arm extends Node3D
 
 @onready var camera: Camera3D = $"../../Camera3D"
 @onready var target: Marker3D = $Target
+@onready var ik_skeleton: SkeletonIK3D = $Skeleton3D/SkeletonIK3D
 
 @export var action: StringName
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$Skeleton3D/PhysicalBoneSimulator3D.physical_bones_start_simulation()
-	pass # Replace with function body.
+	#$Skeleton3D/PhysicalBoneSimulator3D.physical_bones_start_simulation()
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	#ik_skeleton.start()
 	pass
-
 
 func update_target_pos() -> void:
 	var mouse_pos: Vector2 = camera.get_window().get_mouse_position()
@@ -29,4 +29,6 @@ func update_target_pos() -> void:
 	if collision == null: return
 	
 	var arm_target_pos: Vector3 = collision["position"]
-	target.global_position = arm_target_pos
+	print(collision)
+	target.global_position.z = arm_target_pos.z
+	target.global_position.y = arm_target_pos.y

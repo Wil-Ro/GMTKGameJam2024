@@ -4,6 +4,21 @@
 [ext_resource type="Texture2D" uid="uid://b0olfb3q10r26" path="res://assets/storyImage1.png" id="2_8se21"]
 [ext_resource type="Texture2D" uid="uid://due5f7l8a66rm" path="res://assets/frame1.png" id="3_lqbjx"]
 
+[sub_resource type="Animation" id="Animation_do1id"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("background:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-47, 46)]
+}
+
 [sub_resource type="Animation" id="Animation_wrkak"]
 resource_name = "idle"
 length = 20.0
@@ -19,21 +34,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(-47, 46), Vector2(53, -44)]
-}
-
-[sub_resource type="Animation" id="Animation_do1id"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("background:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-47, 46)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jgudp"]
@@ -60,12 +60,14 @@ offset_left = -47.0
 offset_top = 46.0
 offset_right = 603.0
 offset_bottom = 696.0
+texture = ExtResource("2_8se21")
 
 [node name="foreground" type="TextureRect" parent="."]
 layout_mode = 0
 offset_top = -1.0
 offset_right = 651.0
 offset_bottom = 650.0
+texture = ExtResource("3_lqbjx")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
