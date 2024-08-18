@@ -1,9 +1,13 @@
+@tool
+
 class_name Body extends Node3D
 
 @export var arms: Array[Arm]
 @export var body_offset: float = 0.25
 @export var skeleton: Skeleton3D
 @export var body_bone: StringName
+@export var move_speed: float = 0.5
+
 @onready var previous_position: Vector3 = global_position
 
 var active_arm: Arm
@@ -28,29 +32,37 @@ func _physics_process(delta: float) -> void:
 	
 	for arm in arms:
 		var tip_bone_global_pos: Vector3 = skeleton.to_global(arm.tip_bone_trans.origin)
-		#var tip_bone_global_basis: Basis = arm.tip_bone_tras.basis
-		
 		avg_tip_pos += tip_bone_global_pos
 		
-		#avg_tip_basis.x += tip_bone_global_basis.x
-		#avg_tip_basis.y += tip_bone_global_basis.y
-		#avg_tip_basis.z += tip_bone_global_basis.z
-		
 	avg_tip_pos /= arms.size()
-	#avg_tip_basis.x /= arms.size()
-	#avg_tip_basis.y /= arms.size()
-	#avg_tip_basis.z /= arms.size()
 	
-	#skeleton.global_position = avg_tip_pos
+   #skeleton.global_position = avg_tip_pos
 	#var m = MeshInstance3D.new()
 	var body_bone_id: int = skeleton.find_bone(body_bone)
 	var body_bone_transform = skeleton.get_bone_global_pose(body_bone_id)
-	#var velocity = global_position - previous_position
 	var global_pos = skeleton.to_local(avg_tip_pos)# + velocity
-	$tip_average_marker.set_global_position(global_pos)
-	#$center_bone_marker.set_global_position()
 	body_bone_transform.origin = global_pos
 	skeleton.set_bone_global_pose(body_bone_id, body_bone_transform)
-	#previous_position = global_pos
-	#m.global_position = avg_tip_pos
-	#skeleton.global_basis = avg_tip_basis
+	
+	# terrible code but its a jam so fuck it
+	var br = skeleton.to_global(arms[0].tip_bone_trans.origin)
+	var fr = skeleton.to_global(arms[1].tip_bone_trans.origin)
+	var fl = skeleton.to_global(arms[2].tip_bone_trans.origin)
+	var bl = skeleton.to_global(arms[3].tip_bone_trans.origin)
+	
+	var plane1 = Plane(bl, fl, fr)
+	var plane2 = Plane(fr, br, bl)
+	var normal_avg = ((plane1.normal + plane2.normal) / 2).normalized()
+	
+	var basis = Basis()
+	
+	basis.x = normal_avg.cross(skeleton.transform.basis.z)
+	basis.y = normal_avg
+	basis.z = skeleton.transform.basis.x.cross(normal_avg)
+	
+	print(bl, fl, fr)
+	
+	basis = basis.orthonormalized()
+	
+	var target_basis = basis
+	skeleton.transform.basis = lerp(skeleton.transform.basis, target_basis, move_speed * delta).orthonormalized()
