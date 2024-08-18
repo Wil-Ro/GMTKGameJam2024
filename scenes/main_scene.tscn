@@ -4,8 +4,14 @@
 [ext_resource type="PackedScene" uid="uid://dgm3241ceqpim" path="res://scenes/body.tscn" id="1_eeca8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fouvd"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+sky_top_color = Color(0, 0, 0, 1)
+sky_horizon_color = Color(0.907729, 0.561607, 0.737292, 1)
+sky_curve = 0.0174944
+sky_cover_modulate = Color(0.268722, 0.788107, 0.983939, 1)
+ground_horizon_color = Color(0.59779, 0.363033, 0.427638, 1)
+ground_curve = 0.018025
+sun_angle_max = 207.78
+sun_curve = 0.15529
 
 [sub_resource type="Sky" id="Sky_eq0hp"]
 sky_material = SubResource("ProceduralSkyMaterial_fouvd")
