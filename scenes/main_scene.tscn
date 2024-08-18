@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://n05pnykd3tff"]
+[gd_scene load_steps=11 format=3 uid="uid://n05pnykd3tff"]
 
-[ext_resource type="PackedScene" path="res://scenes/menu.tscn" id="1_47rnc"]
-[ext_resource type="PackedScene" uid="uid://xpl5i3rcmscw" path="res://scenes/robot.tscn" id="2_w22pi"]
+[ext_resource type="PackedScene" uid="uid://cjjw0n58nmtfw" path="res://scenes/menu.tscn" id="1_47rnc"]
+[ext_resource type="PackedScene" uid="uid://d3oxojt0ld7cm" path="res://scenes/robot.tscn" id="2_w22pi"]
+[ext_resource type="PackedScene" uid="uid://d103qix0q2nxk" path="res://scenes/person.tscn" id="3_n6fh7"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fouvd"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -81,3 +82,10 @@ shape = SubResource("BoxShape3D_qcnmp")
 
 [node name="Robot" parent="World" instance=ExtResource("2_w22pi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+
+[node name="Person" parent="." instance=ExtResource("3_n6fh7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1, 13)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.00578, 2, 18.619)
+current = true
