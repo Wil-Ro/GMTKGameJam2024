@@ -45,11 +45,12 @@ func _physics_process(delta: float) -> void:
 	#var m = MeshInstance3D.new()
 	var body_bone_id: int = skeleton.find_bone(body_bone)
 	var body_bone_transform = skeleton.get_bone_global_pose(body_bone_id)
-	var velocity = global_position - previous_position
-	print(global_position, previous_position, velocity, avg_tip_pos)
-	var global_pos = avg_tip_pos + velocity * body_offset
+	#var velocity = global_position - previous_position
+	var global_pos = skeleton.to_local(avg_tip_pos)# + velocity
+	$tip_average_marker.set_global_position(global_pos)
+	#$center_bone_marker.set_global_position()
 	body_bone_transform.origin = global_pos
 	skeleton.set_bone_global_pose(body_bone_id, body_bone_transform)
-	previous_position = global_pos
+	#previous_position = global_pos
 	#m.global_position = avg_tip_pos
 	#skeleton.global_basis = avg_tip_basis

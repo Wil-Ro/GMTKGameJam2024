@@ -1,8 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://xpl5i3rcmscw"]
+[gd_scene load_steps=8 format=3 uid="uid://d3oxojt0ld7cm"]
 
 [ext_resource type="PackedScene" uid="uid://bt6d30ro3uit" path="res://assets/lorge_lad.glb" id="1_yl7yu"]
 [ext_resource type="Script" path="res://scripts/robot.gd" id="2_gcxpt"]
 [ext_resource type="Script" path="res://scripts/arm.gd" id="2_kj7im"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kq614"]
+albedo_color = Color(0.266601, 0.598777, 0.75751, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_f8ndx"]
+material = SubResource("StandardMaterial3D_kq614")
+radius = 0.25
+height = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5u7os"]
+albedo_color = Color(0.937332, 0.253354, 0.593443, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_sih0d"]
+material = SubResource("StandardMaterial3D_5u7os")
+radius = 0.25
+height = 0.5
 
 [node name="Robot" node_paths=PackedStringArray("arms", "skeleton") instance=ExtResource("1_yl7yu")]
 script = ExtResource("2_gcxpt")
@@ -12,32 +28,35 @@ skeleton = NodePath("Skeleton3D")
 body_bone = &"Bone"
 
 [node name="Skeleton3D" parent="." index="0"]
+bones/0/position = Vector3(-1.38368e-07, 0.100132, 1.53269e-07)
 bones/25/rotation = Quaternion(-1.26218e-29, 4.893e-22, -2.98023e-08, 1)
 bones/27/rotation = Quaternion(0.5, -0.5, -0.5, -0.5)
 bones/28/rotation = Quaternion(2.37545e-17, 2.18557e-08, 6.01506e-30, 1)
 bones/53/rotation = Quaternion(-6.7435e-08, 0.707107, 0.707107, -6.7435e-08)
 
 [node name="BackRightSocket" parent="Skeleton3D" index="0"]
-transform = Transform3D(0.707107, -3.09086e-08, -0.707106, 1.0842e-15, 1, -4.37114e-08, 0.707107, 3.09086e-08, 0.707107, 0.598254, 0.00174576, 0.598254)
+transform = Transform3D(0.656004, -0.263929, -0.707106, 0.373252, 0.92773, -5.82077e-08, 0.656004, -0.263929, 0.707107, 0.593707, 0.125032, 0.593707)
 
 [node name="FrontRightSocket" parent="Skeleton3D" index="1"]
-transform = Transform3D(0.707107, -1.09501e-22, -0.707107, -2.68658e-22, 1, -4.23516e-22, 0.707107, 4.89441e-22, 0.707107, 0.598254, 0.00174576, -0.598254)
+transform = Transform3D(0.707107, -0.263928, -0.656004, 1.16415e-08, 0.92773, -0.373251, 0.707107, 0.263928, 0.656004, 0.593707, 0.125032, -0.593707)
 
 [node name="FrontLeftSocket" parent="Skeleton3D" index="2"]
-transform = Transform3D(0.707107, 3.09086e-08, -0.707106, -4.7509e-17, 1, 4.37114e-08, 0.707106, -3.09086e-08, 0.707107, -0.598254, 0.00174576, -0.598253)
+transform = Transform3D(0.656004, 0.263928, -0.707107, -0.373251, 0.92773, 1.28057e-07, 0.656004, 0.263928, 0.707106, -0.593708, 0.125032, -0.593707)
 
 [node name="Body_001" parent="Skeleton3D" index="3"]
-transform = Transform3D(0.707107, 0, -0.707106, 0, 1, 0, 0.707106, 0, 0.707107, 1.19412e-07, -2.32831e-09, 1.78611e-07)
+transform = Transform3D(0.707107, 0, -0.707106, 0, 1, 0, 0.707106, 0, 0.707107, 1.19412e-07, 0.106696, 1.78611e-07)
 
-[node name="Body_001" parent="Skeleton3D/Body_001" index="0"]
-visible = false
+[node name="center_bone_marker" type="MeshInstance3D" parent="Skeleton3D/Body_001" index="0"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -2.10734e-07, -0.106696, -4.186e-08)
+mesh = SubResource("SphereMesh_f8ndx")
+skeleton = NodePath("../../..")
 
-[node name="Camera3D" type="Camera3D" parent="Skeleton3D/Body_001" index="1"]
+[node name="Camera3D" type="Camera3D" parent="Skeleton3D/Body_001" index="2"]
 transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 2.82843, 2.32831e-09, -2.82843)
 current = true
 
 [node name="BackLeftSocket" parent="Skeleton3D" index="4"]
-transform = Transform3D(0.707107, -1.66533e-14, -0.707107, 1.11022e-14, 1, 1.05557e-15, 0.707106, 2.22045e-14, 0.707107, -0.598254, 0.00174576, 0.598254)
+transform = Transform3D(0.707107, 0.263929, -0.656004, 4.52232e-08, 0.92773, 0.373251, 0.707106, -0.263929, 0.656004, -0.593707, 0.125032, 0.593708)
 
 [node name="BackRightIK" type="SkeletonIK3D" parent="Skeleton3D" index="9"]
 root_bone = &"BackRight_Root"
@@ -58,7 +77,6 @@ script = ExtResource("2_kj7im")
 action = &"ActivateFrontRight"
 
 [node name="FrontLeftIK" type="SkeletonIK3D" parent="Skeleton3D" index="11"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 root_bone = &"FrontLeft_Root"
 tip_bone = &"FrontLeft_Tip"
 use_magnet = true
@@ -87,3 +105,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, -0.744633, -1.5)
 
 [node name="BackLeftTarget" type="Marker3D" parent="Skeleton3D" index="16"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, -0.744633, 1.5)
+
+[node name="tip_average_marker" type="MeshInstance3D" parent="." index="1"]
+mesh = SubResource("SphereMesh_sih0d")
