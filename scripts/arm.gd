@@ -1,34 +1,31 @@
-class_name Arm extends Node3D
+@tool
 
-@onready var camera: Camera3D = $"../../Camera3D"
-@onready var target: Marker3D = $Target
-@onready var ik_skeleton: SkeletonIK3D = $Skeleton3D/SkeletonIK3D
+class_name Arm extends SkeletonIK3D
+
+@onready var ik_target = get_node(target_node)
+@onready var skeleton: Skeleton3D = get_parent_skeleton()
 
 @export var action: StringName
+@export var move_speed: float = 1.5
+
+var input_dir: Vector2
+var tip_bone_trans: Transform3D
 
 func _ready() -> void:
-	#$Skeleton3D/PhysicalBoneSimulator3D.physical_bones_start_simulation()
-	pass
+	modification_processed.connect(_on_modification_processed)
+	
+	start()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	#ik_skeleton.start()
-	pass
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		input_dir = event.relative
 
-func update_target_pos() -> void:
-	var mouse_pos: Vector2 = camera.get_window().get_mouse_position()
-	
-	var origin: Vector3 = camera.project_ray_origin(mouse_pos)
-	var dir: Vector3 = origin + (camera.project_ray_normal(mouse_pos) * 100)
-	
-	var world_space: PhysicsDirectSpaceState3D = camera.get_window().world_3d.direct_space_state
-	var ray_query = PhysicsRayQueryParameters3D.create(origin, dir)
-	var collision: Dictionary = world_space.intersect_ray(ray_query)
-	
-	if collision == null: return
-	
-	var arm_target_pos: Vector3 = collision["position"]
-	print(collision)
-	target.global_position.z = arm_target_pos.z
-	target.global_position.y = arm_target_pos.y
+func update_target_pos(delta: float) -> void:
+	ik_target.global_position.z -= input_dir.x * delta * move_speed
+	ik_target.global_position.y -= input_dir.y * delta * move_speed
+	input_dir = Vector2.ZERO
+
+func _on_modification_processed() -> void:
+	var tip_bone_id: int = skeleton.find_bone(tip_bone)
+	tip_bone_trans = skeleton.get_bone_global_pose(tip_bone_id)
