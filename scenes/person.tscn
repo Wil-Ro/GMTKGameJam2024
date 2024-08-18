@@ -1,0 +1,64 @@
+[gd_scene load_steps=11 format=3 uid="uid://d103qix0q2nxk"]
+
+[ext_resource type="Script" path="res://scripts/person.gd" id="1_cq208"]
+[ext_resource type="PackedScene" uid="uid://dgb2a8uf8jr08" path="res://assets/person.glb" id="2_s14ov"]
+[ext_resource type="Script" path="res://scripts/fireparticles.gd" id="3_dbqx3"]
+[ext_resource type="Texture2D" uid="uid://d20ttydfqwf1f" path="res://assets/smoke.png" id="4_3rvxr"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ksic7"]
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 0.1
+initial_velocity_max = 1.4
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pgvg5"]
+transparency = 1
+albedo_color = Color(0.477275, 0.479144, 0.470632, 1)
+albedo_texture = ExtResource("4_3rvxr")
+
+[sub_resource type="QuadMesh" id="QuadMesh_i1be6"]
+material = SubResource("StandardMaterial3D_pgvg5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vmqhf"]
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 4.0
+initial_velocity_max = 4.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_65tyw"]
+albedo_color = Color(0.897323, 0.516031, 0.403514, 1)
+emission_enabled = true
+emission = Color(0.95733, 0.577583, 0.247133, 1)
+emission_energy_multiplier = 7.1
+
+[sub_resource type="SphereMesh" id="SphereMesh_5e6v0"]
+material = SubResource("StandardMaterial3D_65tyw")
+radius = 0.01
+height = 0.02
+radial_segments = 4
+rings = 4
+
+[node name="Person" type="Node3D"]
+script = ExtResource("1_cq208")
+
+[node name="person" parent="." instance=ExtResource("2_s14ov")]
+
+[node name="fire_particles" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.19282, 0)
+script = ExtResource("3_dbqx3")
+
+[node name="smoke" type="GPUParticles3D" parent="fire_particles"]
+amount = 66
+process_material = SubResource("ParticleProcessMaterial_ksic7")
+draw_pass_1 = SubResource("QuadMesh_i1be6")
+
+[node name="glow" type="GPUParticles3D" parent="fire_particles"]
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_vmqhf")
+draw_pass_1 = SubResource("SphereMesh_5e6v0")
+
+[node name="burst_length_timer" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="timeout" from="burst_length_timer" to="." method="_on_burst_length_timer_timeout"]

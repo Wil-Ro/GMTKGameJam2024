@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://ddebtwg42wwc2"]
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2

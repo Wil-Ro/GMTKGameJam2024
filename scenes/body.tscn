@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://dokbg0jg0lb6a"]
+
+[ext_resource type="Script" path="res://scripts/body.gd" id="1_21au4"]
+[ext_resource type="PackedScene" uid="uid://nusoljma3t55" path="res://scenes/pickaxe_arm.tscn" id="2_m4hhp"]
+[ext_resource type="Script" path="res://scripts/camera.gd" id="3_mslwr"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_jcpb6"]
+radius = 5.0
+height = 10.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_16w3w"]
+radius = 5.0
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_vlifr"]
+plane = Plane(1000, 0, 0, 0)
+
+[node name="Body" type="RigidBody3D"]
+axis_lock_linear_x = true
+axis_lock_angular_z = true
+script = ExtResource("1_21au4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_jcpb6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_16w3w")
+
+[node name="ArmPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8945, 0)
+
+[node name="PickaxeArm" parent="ArmPivot" instance=ExtResource("2_m4hhp")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 32, 0, 0)
+script = ExtResource("3_mslwr")
+
+[node name="RaycastPlane" type="StaticBody3D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RaycastPlane"]
+shape = SubResource("WorldBoundaryShape3D_vlifr")
